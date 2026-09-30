@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getProjects } from '../data/projects.js';
-import './ProjectList.css';
+import './ProjectCard.css';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
@@ -46,34 +46,18 @@ function ProjectList() {
         <ul className="project-list">
             {projects.map((project) => (
                 <li className="project-list__item" key={project.id}>
-                    <article className="project-list__project">
-                        <div className="project-list__heading">
-                            <div>
-                                <p className="project-list__eyebrow">
-                                    {[project.category, project.event].filter(Boolean).join(' / ')}
-                                </p>
-                                <h2>
-                                    <Link to={`/projects/${project.id}`}>{project.name}</Link>
+                    <article className="project-card">
+                        <div className="project-card__image" aria-hidden="true" />
+                        <div className="project-card__panel">
+                            <div className="project-card__copy">
+                                <h2 className="project-card__org">
+                                    <Link to={`/projects/${project.id}`}>
+                                        {project.org || 'Organization'}
+                                    </Link>
                                 </h2>
+                                <p className="project-card__event">{project.event || 'Event name'}</p>
                             </div>
-                            {project.duration && (
-                                <span className="project-list__duration">{project.duration}</span>
-                            )}
                         </div>
-
-                        {(project.org || project.position) && (
-                            <p className="project-list__credit">
-                                {[project.position, project.org].filter(Boolean).join(' at ')}
-                            </p>
-                        )}
-
-                        {project.desc && <p className="project-list__description">{project.desc}</p>}
-
-                        {project.tools && (
-                            <p className="project-list__tools">
-                                <span>Tools</span> {project.tools}
-                            </p>
-                        )}
                     </article>
                 </li>
             ))}
