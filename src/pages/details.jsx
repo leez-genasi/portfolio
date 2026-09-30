@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getProjectById } from './data/projects.js';
+import { getProjectById } from '../data/projects.js';
 import './details.css';
 
 const projectFields = [

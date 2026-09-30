@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
-import ProjectList from './components/projectList.jsx'
-import ProjectDetails from './details.jsx'
+import ProjectList from './components/ProjectList.jsx'
+import ProjectDetails from './pages/details.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getProjects } from '../data/projects.js';
-import './projectList.css';
+import './ProjectList.css';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
