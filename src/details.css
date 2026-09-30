@@ -1,0 +1,94 @@
+.project-details {
+    width: min(100% - 3rem, 52rem);
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+    text-align: left;
+}
+
+.project-details__back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #526554;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.project-details__header {
+    padding: 2rem 0;
+    border-top: 1px solid #a8aba4;
+    border-bottom: 1px solid #a8aba4;
+}
+
+.project-details__eyebrow {
+    color: #526554;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.project-details__header h1 {
+    margin: 0.65rem 0;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.1;
+}
+
+.project-details__duration {
+    color: #62675f;
+}
+
+.project-details__section {
+    padding: 2rem 0;
+    border-bottom: 1px solid #d0d1cb;
+}
+
+.project-details__section h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1.25rem;
+}
+
+.project-details__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 2rem;
+    margin: 0;
+}
+
+.project-details__field {
+    min-width: 0;
+}
+
+.project-details__field dt {
+    margin-bottom: 0.25rem;
+    color: #62675f;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.project-details__field dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.project-details__description {
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.project-details__status {
+    width: min(100% - 3rem, 52rem);
+    margin: 2rem auto;
+    text-align: left;
+}
+
+@media (max-width: 540px) {
+    .project-details {
+        width: min(100% - 2rem, 52rem);
+        padding-top: 1.25rem;
+    }
+
+    .project-details__fields {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

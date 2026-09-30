@@ -1,10 +1,17 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
+import ProjectList from './components/projectList.jsx'
+import ProjectDetails from './details.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<ProjectList />} />
+        <Route path="/projects/:id" element={<ProjectDetails />} />
+      </Routes>
+    </HashRouter>
   </StrictMode>,
 )

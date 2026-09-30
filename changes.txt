@@ -1,0 +1,7 @@
+Built a reusable project list in projectList.jsx, with responsive styling in projectList.css.
+Added browser-side SQLite loading with sql.js WebAssembly. Shared query helpers in projects.js load all projects or a single project by ID.
+Updated vite.config.js to serve project.db locally and include it in production builds.
+Added a project detail template in details.jsx, with comments marking the query and template areas you can customize. Its route is registered in main.jsx.
+Installed sql.js, updating package.json and package-lock.json.
+
+- The remaining lint warning is in the starter App.jsx: HashRouter is undefined.
