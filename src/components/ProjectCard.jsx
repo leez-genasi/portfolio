@@ -50,12 +50,11 @@ function ProjectList() {
                         <div className="project-card__image" aria-hidden="true" />
                         <div className="project-card__panel">
                             <div className="project-card__copy">
-                                <h2 className="project-card__org">
+                                <h2 className="project-card__org">{project.org || 'Organization'}</h2>
+                                <h2 className="project-card__event">
                                     <Link to={`/projects/${project.id}`}>
-                                        {project.org || 'Organization'}
-                                    </Link>
-                                </h2>
-                                <p className="project-card__event">{project.event || 'Event name'}</p>
+                                    {project.event || 'Event name'}
+                                    </Link></h2>
                             </div>
                         </div>
                     </article>

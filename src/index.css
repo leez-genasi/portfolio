@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+
 :root {
   --neutral-light: #FFF4EB;
   --neutral-dark: #282A2B;
@@ -5,6 +8,9 @@
   --primary-dark: #1F372A;
   --secondary-light: #B7582C;
   --secondary-dark: #83331B;
+
+  --primary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --accent-font: 'Reenie Beanie', cursive;
 
   font: 1rem/100% var(--sans);
   letter-spacing: 0.18px;
