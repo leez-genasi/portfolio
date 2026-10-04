@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Routes } from 'react-router-dom';
 import { getProjectById } from '../data/projects.js';
 import './details.css';
 

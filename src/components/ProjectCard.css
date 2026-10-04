@@ -49,15 +49,20 @@
     font-family: var(--accent-font);
     color: var(--neutral-dark);
     font-size: 3rem;
+    text-align: left;
     color: inherit;
-    margin-bottom: 8px;
 }
 
+.project-card__event {
+    text-align: left;
+    margin-top: -8px;
+}
 
 .project-card__event a {
     font-family: var(--primary-font);
+    font-weight: bold;
+    font-size: 1.25rem;
     color: var(--neutral-dark);
-    font-size: 1.5rem;
     text-decoration: none;
 }
 
