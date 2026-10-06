@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getProjects } from '../data/projects.js';
+import { getProjectImageList } from '../data/projectImages.js';
 import './ProjectCard.css';
 
 function ProjectList() {
@@ -44,22 +45,29 @@ function ProjectList() {
 
     return (
         <ul className="project-list">
-            {projects.map((project) => (
-                <li className="project-list__item" key={project.id}>
-                    <article className="project-card">
-                        <div className="project-card__image" aria-hidden="true" />
-                        <div className="project-card__panel">
-                            <div className="project-card__copy">
-                                <h2 className="project-card__org">{project.org || 'Organization'}</h2>
-                                <h2 className="project-card__event">
-                                    <Link to={`/projects/${project.id}`}>
-                                    {project.event || 'Event name'}
-                                    </Link></h2>
+            {projects.map((project) => {
+                const coverImage = getProjectImageList(project.img_cover)[0]?.src;
+
+                return (
+                    <li className="project-list__item" key={project.id}>
+                        <Link to={`/projects/${project.id}`} className="project-card__link" aria-label={`View details for ${project.event || 'this project'}`}>
+                        <article className="project-card">
+                            <div className="project-card__image" aria-hidden="true">
+                                {coverImage && <img src={coverImage} alt="" />}
                             </div>
-                        </div>
-                    </article>
-                </li>
-            ))}
+                            <div className="project-card__panel">
+                                <div className="project-card__copy">
+                                    <h2 className="project-card__org">{project.org || 'Organization'}</h2>
+                                    <h2 className="project-card__event">
+                                            {project.event || 'Event name'}
+                                    </h2>
+                                </div>
+                            </div>
+                        </article>
+                        </Link>
+                    </li>
+                );
+            })}
         </ul>
     );
 }

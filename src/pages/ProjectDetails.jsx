@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, Routes } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getProjectById } from '../data/projects.js';
-import './details.css';
+import { getProjectImageList } from '../data/projectImages.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import './ProjectDetails.css';
 
 const projectFields = [
-    { key: 'event', label: 'Event' },
-    { key: 'committee', label: 'Committee' },
-    { key: 'position', label: 'Position' },
-    { key: 'org', label: 'Organization' },
-    { key: 'duration', label: 'Duration' },
-    { key: 'category', label: 'Category' },
     { key: 'role', label: 'Role' },
     { key: 'collaboration', label: 'Collaboration' },
     { key: 'tools', label: 'Tools' },
@@ -65,37 +62,64 @@ function ProjectDetails() {
         );
     }
 
+    const headerImage = getProjectImageList(project.img_header)[0]?.src;
+    const otherImages = getProjectImageList(project.img_others);
+    const hasDescription = typeof project.desc === 'string' && project.desc.trim().length > 0;
+
     return (
         <main className="project-details">
-            <Link className="project-details__back" to="/">&larr; Selected works</Link>
+            <div className="project-details__nav">
+                <Link className="project-details__back" to="/">Selected Works</Link>
+                <FontAwesomeIcon className='project-details__arrow' icon={faChevronRight} size='s'/>
+                <div className="project-details__current">{project.name}</div>
+            </div>
             <header className="project-details__header">
-                <p className="project-details__eyebrow">
-                    {[project.category, project.event].filter(Boolean).join(' / ') || 'Selected work'}
-                </p>
                 <h1>{project.name}</h1>
-                {project.duration && <p className="project-details__duration">{project.duration}</p>}
+                <p className="project-details__position">{project.duration} {project.position}</p>
             </header>
 
-            <section className="project-details__section" aria-labelledby="project-overview-heading">
-                <h2 id="project-overview-heading">Overview</h2>
-                {/* Edit this field list to change which database columns appear on the page. */}
-                <dl className="project-details__fields">
-                    {projectFields.map(({ key, label }) => (
-                        <div className="project-details__field" key={key}>
-                            <dt>{label}</dt>
-                            <dd>{project[key] || 'Not provided yet'}</dd>
-                        </div>
-                    ))}
-                </dl>
+            {headerImage && (
+                <img
+                    className="project-details__header-image"
+                    src={headerImage}
+                    alt={`${project.name} project`}
+                />
+            )}
+
+            <section className={`project-details__section project-details__content${hasDescription ? '' : ' project-details__content--no-description'}`}>
+                <section className="project-details__metadata" aria-labelledby="project-details-heading">
+                    <h2 id="project-details-heading">Project Details</h2>
+                    <dl className="project-details__fields">
+                        {projectFields.map(({ key, label }) => (
+                            <div className="project-details__field" key={key}>
+                                <dt>{label}</dt>
+                                <dd>{project[key] || 'Not provided yet'}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </section>
+
+                {hasDescription && (
+                    <section className="project-details__description-panel" aria-labelledby="project-description-heading">
+                        <h2 id="project-description-heading">Description</h2>
+                        <p className="project-details__description">{project.desc}</p>
+                    </section>
+                )}
             </section>
 
-            <section className="project-details__section" aria-labelledby="project-description-heading">
-                <h2 id="project-description-heading">Description</h2>
-                {/* Replace this placeholder with a richer layout if the DB adds media or links. */}
-                <p className="project-details__description">
-                    {project.desc || 'Add a project description in the database to show it here.'}
-                </p>
-            </section>
+            {otherImages.length > 0 && (
+                <section className="project-details__gallery" aria-label={`${project.name} images`}>
+                    {otherImages.map(({ filename, src }, index) => (
+                        <img
+                            className="project-details__gallery-image"
+                            key={`${filename}-${index}`}
+                            src={src}
+                            alt={`${project.name} project image ${index + 1}`}
+                            loading="lazy"
+                        />
+                    ))}
+                </section>
+            )}
         </main>
     );
 }

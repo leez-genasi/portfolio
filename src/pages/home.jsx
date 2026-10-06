@@ -1,14 +1,18 @@
 import { Route, Routes } from 'react-router-dom'
 import '../index.css';
 import ProjectList from '../components/ProjectCard.jsx'
-import ProjectDetails from './ProjectDetails.jsx'
+
 
 function Home() {
     return (
-        <Routes>
-            <Route path="/" element={<ProjectList />} />
-            <Route path="/projects/:id" element={<ProjectDetails />} />
-        </Routes>
+        <div>
+            <div className="intro">
+            </div>
+            <h2>Selected Works</h2>
+            <Routes>
+            <Route path="/*" element={<ProjectList />} />
+            </Routes>
+        </div>
     )
 }
 

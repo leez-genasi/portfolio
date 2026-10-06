@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --neutral-light: #FFF4EB;
@@ -9,7 +10,7 @@
   --secondary-light: #B7582C;
   --secondary-dark: #83331B;
 
-  --primary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --primary-font: "Jost", Helvetica, sans-serif;
   --accent-font: 'Reenie Beanie', cursive;
 
   font: 1rem/100%;
@@ -45,9 +46,8 @@
 }
 
 #root {
-  width: 75%;
-  min-width: 1024px;
-  max-width: 1400px;
+  width: 80%;
+  max-width: 1440px;
   margin: 32px auto;
   text-align: center;
   display: flex;
@@ -65,14 +65,18 @@ h1 {
   }
 }
 h2 {
+  font-family: var(--primary-font);
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: bold;
+  color: var(--primary-dark);
   letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
+  text-align: left;
+  /* @media (max-width: 1024px) {
     font-size: 20px;
-  }
+  } */
 }
+
 p {
   margin: 0;
 }

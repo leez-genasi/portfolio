@@ -35,5 +35,8 @@ function projectDatabasePlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), projectDatabasePlugin()],
+  ssr: {
+    noExternal: ["@fortawesome/react-fontawesome"],
+  },
   base: "/portfolio/"
 })
