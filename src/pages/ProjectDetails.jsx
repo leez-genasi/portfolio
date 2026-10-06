@@ -62,7 +62,7 @@ function ProjectDetails() {
         );
     }
 
-    const headerImage = getProjectImageList(project.img_header)[0]?.src;
+    const headerImages = getProjectImageList(project.img_header);
     const otherImages = getProjectImageList(project.img_others);
     const hasDescription = typeof project.desc === 'string' && project.desc.trim().length > 0;
 
@@ -78,12 +78,21 @@ function ProjectDetails() {
                 <p className="project-details__position">{project.duration} {project.position}</p>
             </header>
 
-            {headerImage && (
-                <img
-                    className="project-details__header-image"
-                    src={headerImage}
-                    alt={`${project.name} project`}
-                />
+            {headerImages.length > 0 && (
+                <section
+                    className="project-details__header-images"
+                    aria-label={`${project.name} header images`}
+                    style={{ gridTemplateColumns: `repeat(${headerImages.length}, minmax(0, 1fr))` }}
+                >
+                    {headerImages.map(({ filename, src }, index) => (
+                        <img
+                            className="project-details__header-image"
+                            key={`${filename}-${index}`}
+                            src={src}
+                            alt={`${project.name} project header image ${index + 1}`}
+                        />
+                    ))}
+                </section>
             )}
 
             <section className={`project-details__section project-details__content${hasDescription ? '' : ' project-details__content--no-description'}`}>

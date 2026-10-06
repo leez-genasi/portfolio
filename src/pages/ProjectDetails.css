@@ -69,6 +69,12 @@
     color: var(--neutral-dark);
 }
 
+.project-details__header-images {
+    display: grid;
+    align-items: start;
+    gap: 1rem;
+}
+
 .project-details__header-image {
     display: block;
     width: 100%;
@@ -81,7 +87,7 @@
 
 .project-details__content {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     gap: 1rem;
 }
 
@@ -182,4 +188,5 @@
     .project-details__gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
 }
