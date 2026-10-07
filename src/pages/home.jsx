@@ -2,20 +2,18 @@ import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProjectList from '../components/ProjectCard.jsx'
 import photo from '../assets/img.png'
+import mailIcon from '../assets/MAIL.png'
+import linkedInIcon from '../assets/LINKEDIN.png'
+import githubIcon from '../assets/GITHUB.png'
 import toolIcon from '../assets/tool-placeholder.svg'
 import '../index.css'
 import './Home.css'
 
 const W = 1920
 const H = 1100
-const EMAIL = ''
-const LINKEDIN = 'https://www.linkedin.com/in/lee-charlette/?isSelfProfile=true'
-const tools = [
-    { name: 'Tool 1', src: toolIcon },
-    { name: 'Tool 2', src: toolIcon },
-    { name: 'Tool 3', src: toolIcon },
-    { name: 'Tool 4', src: toolIcon },
-]
+const EMAIL = 'mailto:charlee3279@gmail.com'
+const LINKEDIN = 'https://www.linkedin.com/in/lee-charlette/'
+const GITHUB = 'https://github.com/leez-genasi/'
 const DOTS = [
     [63, 14.5, 0.4], [94.5, 24, 0.52], [111.5, 47, 0.64], [111.5, 81, 0.76],
     [94.5, 104.5, 0.88], [63, 114, 1], [31.5, 104.5, 0.88], [14.5, 81, 0.76],
@@ -76,11 +74,14 @@ function Home() {
 
                         <nav className="contact" aria-label="Contact">
                             <span className="reach">reach me:</span>
-                            <a href={`mailto:charlee3279@gmail.com`} aria-label="Email me">
-                                <img src="src\assets\MAIL.png" />
+                            <a href={EMAIL} aria-label="Email me">
+                                <img src={mailIcon} alt="" />
                             </a>
-                            <a href="https://www.linkedin.com/in/lee-charlette/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                                <img src="src\assets\LINKEDIN.png" />
+                            <a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <img src={linkedInIcon} alt="" />
+                            </a>
+                            <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <img src={githubIcon} alt="" />
                             </a>
                         </nav>
                     </div>
