@@ -1,4 +1,4 @@
-const projectImages = import.meta.glob('../assets/*', {
+const projectImages = import.meta.glob(['../assets/*', '../assets/**/*'], {
     eager: true,
     query: '?url',
     import: 'default',
@@ -32,15 +32,21 @@ function parseImageList(imageList) {
 export function getProjectImage(filename) {
     if (typeof filename !== 'string' || !filename.trim()) return null;
 
-    const basename = filename.trim().replaceAll('\\', '/').split('/').pop();
-    const exactImage = projectImages[`../assets/${basename}`];
-    if (exactImage) return exactImage;
+    const requestedPath = filename.trim()
+        .replaceAll('\\', '/')
+        .replace(/^(\.\.\/)?assets\//, '')
+        .replace(/^\/+/, '');
+    const requestedWithoutExtension = requestedPath.replace(/\.[^.]+$/, '');
+    const requestedBasename = requestedWithoutExtension.split('/').pop();
+    const matchingPath = Object.keys(projectImages).find((path) => {
+        const relativePath = path.slice('../assets/'.length);
+        const pathWithoutExtension = relativePath.replace(/\.[^.]+$/, '');
 
-    const extensionlessImage = Object.keys(projectImages).find((path) =>
-        path.slice('../assets/'.length).replace(/\.[^.]+$/, '') === basename,
-    );
+        return pathWithoutExtension === requestedWithoutExtension
+            || (!requestedPath.includes('/') && pathWithoutExtension.split('/').pop() === requestedBasename);
+    });
 
-    return extensionlessImage ? projectImages[extensionlessImage] : null;
+    return matchingPath ? projectImages[matchingPath] : null;
 }
 
 export function getProjectImageList(imageList) {

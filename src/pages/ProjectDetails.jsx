@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProjectById } from '../data/projects.js';
 import { getProjectImageList } from '../data/projectImages.js';
+import MiscProject from './MiscProject.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './ProjectDetails.css';
@@ -11,6 +12,51 @@ const projectFields = [
     { key: 'collaboration', label: 'Collaboration' },
     { key: 'tools', label: 'Tools' },
 ];
+
+const descriptionFormattingTags = new Set([
+    'a', 'b', 'strong', 'i', 'em', 'u', 's', 'del', 'ins', 'mark', 'small', 'sub', 'sup', 'br',
+]);
+const descriptionBlockedTags = new Set([
+    'script', 'style', 'template', 'iframe', 'object', 'embed',
+]);
+
+function renderDescription(description) {
+    const parsed = new DOMParser().parseFromString(description, 'text/html');
+
+    function getSafeHref(href) {
+        if (!href) return null;
+
+        try {
+            const url = new URL(href, window.location.href);
+            return ['http:', 'https:', 'mailto:', 'tel:'].includes(url.protocol) ? href : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function renderNode(node, key) {
+        if (node.nodeType === 3) return node.textContent;
+        if (node.nodeType !== 1) return null;
+
+        const tagName = node.tagName.toLowerCase();
+        if (descriptionBlockedTags.has(tagName)) return null;
+
+        const children = Array.from(node.childNodes, (child, index) =>
+            renderNode(child, `${key}-${index}`),
+        );
+
+        if (!descriptionFormattingTags.has(tagName)) return children;
+        if (tagName === 'a') {
+            const href = getSafeHref(node.getAttribute('href'));
+            return href ? createElement('a', { key, href }, ...children) : children;
+        }
+        return createElement(tagName, { key }, ...children);
+    }
+
+    return Array.from(parsed.body.childNodes, (node, index) =>
+        renderNode(node, `description-${index}`),
+    );
+}
 
 function ProjectDetails() {
     const { id } = useParams();
@@ -62,6 +108,10 @@ function ProjectDetails() {
         );
     }
 
+    if (project.kind === 'misc') {
+        return <MiscProject project={project} />;
+    }
+
     const headerImages = getProjectImageList(project.img_header);
     const otherImages = getProjectImageList(project.img_others);
     const hasDescription = typeof project.desc === 'string' && project.desc.trim().length > 0;
@@ -111,7 +161,7 @@ function ProjectDetails() {
                 {hasDescription && (
                     <section className="project-details__description-panel" aria-labelledby="project-description-heading">
                         <h2 id="project-description-heading">Description</h2>
-                        <p className="project-details__description">{project.desc}</p>
+                        <p className="project-details__description">{renderDescription(project.desc)}</p>
                     </section>
                 )}
             </section>

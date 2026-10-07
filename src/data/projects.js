@@ -26,7 +26,11 @@ async function queryProjects(query, parameters = []) {
 }
 
 export function getProjects() {
-    return queryProjects('SELECT * FROM projectList ORDER BY id');
+    return queryProjects('SELECT * FROM projectList WHERE "order" IS NOT NULL ORDER BY "order", id');
+}
+
+export function getMiscProjects() {
+    return queryProjects('SELECT * FROM miscProjects ORDER BY "order", id');
 }
 
 export async function getProjectById(id) {

@@ -13,11 +13,11 @@
     flex-direction: row;
     align-items: center;
     gap: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 .project-details__back {
     display: inline-block;
-    margin-bottom: 1rem;
     color: var(--neutral-dark);
     text-decoration: none;
 
@@ -40,7 +40,6 @@
 .project-details__current {
     font-weight: bold;
     display: inline-block;
-    margin-bottom: 1rem;
     color: var(--neutral-light);
     
     background-color: var(--primary-light);
@@ -119,7 +118,7 @@
 
 .project-details__field dt {
     margin-bottom: 0.25rem;
-    color: #62675f;
+    color: var(--primary-light);
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -129,16 +128,21 @@
     margin: 0;
     overflow-wrap: anywhere;
     white-space: pre-line;
-    line-height: 1.5;
+    line-height: 1.3;
 }
 
 .project-details__description {
-    line-height: 1.7;
+    line-height: 1.3;
     white-space: pre-wrap;
 }
 
 .project-details__description-panel {
     padding-left: 1.5rem;
+}
+
+.project-details__description-panel a {
+    color: inherit;
+    text-underline-offset: 2px;
 }
 
 .project-details__gallery {
