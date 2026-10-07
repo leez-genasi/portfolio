@@ -77,10 +77,10 @@ function Home() {
                         <nav className="contact" aria-label="Contact">
                             <span className="reach">reach me:</span>
                             <a href={`mailto:charlee3279@gmail.com`} aria-label="Email me">
-                                <img src="src\assets\MAIL.svg" />
+                                <img src="src\assets\MAIL.png" />
                             </a>
                             <a href="https://www.linkedin.com/in/lee-charlette/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                                <img src="src\assets\LINKEDIN.svg" />
+                                <img src="src\assets\LINKEDIN.png" />
                             </a>
                         </nav>
                     </div>
