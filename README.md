@@ -9,6 +9,7 @@ My personal portfolio website, built with React and Vite and hosted on GitHub Pa
 - [React](https://react.dev)
 - [Vite](https://vite.dev)
 - [Oxlint](https://oxc.rs) for linting
+- [SQLite](https://www.sqlite.org/)
 - GitHub Pages for hosting
 
 ## Project Structure
