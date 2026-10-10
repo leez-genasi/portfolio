@@ -1,0 +1,95 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --neutral-light: #FFF4EB;
+  --neutral-dark: #282A2B;
+  --primary-light: #385A41;
+  --primary-dark: #1F372A;
+  --secondary-light: #B7582C;
+  --secondary-dark: #83331B;
+
+  --primary-font: "Jost", Helvetica, sans-serif;
+  --accent-font: 'Reenie Beanie', cursive;
+
+  font: 1rem/100%;
+  letter-spacing: 0.18px;
+  background: var(--neutral-light);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+#root {
+  width: 80%;
+  max-width: 1440px;
+  margin: 32px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--primary-font);
+  font-size: 3.5rem;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-family: var(--primary-font);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+  letter-spacing: -0.24px;
+  margin: 16px 0 4px 0;
+  text-align: left;
+  /* @media (max-width: 1024px) {
+    font-size: 20px;
+  } */
+}
+
+h6 {
+  font-family: var(--accent-font);
+  font-size: 2rem;
+  padding: 0;
+  margin: 16px;
+}
+
+p {
+  margin: 0;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+}
